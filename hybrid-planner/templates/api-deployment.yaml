@@ -35,6 +35,9 @@ spec:
           env:
             - name: DATABASE_URL
               value: file:/db/database.sqlite3
+          volumeMounts:
+            - name: db
+              mountPath: /db
       containers:
         - name: {{ .Chart.Name }}-api
           securityContext:

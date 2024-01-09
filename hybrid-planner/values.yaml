@@ -6,12 +6,12 @@ replicaCount: 1
 
 frontendImage:
   image: ghcr.io/hybridplanner/frontend
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
   tag: ""
 
 backendImage:
   image: ghcr.io/hybridplanner/backend
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
