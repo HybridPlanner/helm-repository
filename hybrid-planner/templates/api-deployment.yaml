@@ -30,14 +30,14 @@ spec:
           command:
             - sh
             - -c
-            - "npx prisma migrate deploy"
+            - "npm run deploy-db"
           env:
             - name: DATABASE_URL
               value: file:/db/database.sqlite3
       containers:
         - name: {{ .Chart.Name }}-api
           securityContext:
-             {{- toYaml .Values.securityContext | nindent 12 }}
+            {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.backendImage.image }}:{{ .Values.backendImage.tag | default "latest" }}"
           imagePullPolicy: {{ .Values.backendImage.pullPolicy }}
           env:
