@@ -35,7 +35,7 @@ spec:
         - name: {{ .Chart.Name }}-api
           securityContext:
              {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.backendImage.repository }}:{{ .Values.backendImage.tag | default "latest" }}"
+          image: "{{ .Values.backendImage.image }}:{{ .Values.backendImage.tag | default "latest" }}"
           imagePullPolicy: {{ .Values.backendImage.pullPolicy }}
           env:
             - name: PORT

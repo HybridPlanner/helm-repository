@@ -36,7 +36,7 @@ securityContext:
 
 service:
   type: ClusterIP
-  frontPort: 3000
+  frontPort: 80
   apiPort: 8080
 
 ingress:
