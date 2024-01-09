@@ -34,9 +34,6 @@ spec:
           env:
             - name: DATABASE_URL
               value: file:/db/database.sqlite3
-          volumeMounts:
-            - mountPath: /db
-              name: database
       containers:
         - name: {{ .Chart.Name }}-api
           securityContext:
@@ -69,9 +66,6 @@ spec:
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-          volumeMounts:
-            - mountPath: /db
-              name: database
         - name: mailhog
           image: mailhog/mailhog
           ports:
@@ -79,10 +73,6 @@ spec:
               containerPort: 8025
             - name: smtp-mail
               containerPort: 1025
-      volumes:
-        - name: database
-          persistentVolumeClaim:
-            claimName: {{ include "hybrid-planner.fullname" . }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
