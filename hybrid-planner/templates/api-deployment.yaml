@@ -28,9 +28,10 @@ spec:
           image: "{{ .Values.backendImage.image }}:{{ .Values.backendImage.tag | default "latest" }}"
           imagePullPolicy: {{ .Values.backendImage.pullPolicy }}
           command:
-            - npm
-            - run
-            - deploy-db
+            - npx
+            - prisma
+            - migrate
+            - deploy
           env:
             - name: DATABASE_URL
               value: file:/db/database.sqlite3
@@ -47,9 +48,9 @@ spec:
               value: file:/db/database.sqlite3
             - name: URL_FRONTEND
               value: "https://planner.bricklou.ovh"
-          #envFrom:
-          #  - secretRef:
-          #      name: {{ include "hybrid-planner.fullname" . }}
+          envFrom:
+            - secretRef:
+                name: {{ include "hybrid-planner.fullname" . }}
           ports:
             - name: http
               containerPort: {{ .Values.service.apiPort }}
@@ -64,13 +65,13 @@ spec:
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-        #- name: mailhog
-        # image: rollupdev/mailhog
-        # ports:
-        #   - name: http-mail
-        #     containerPort: 8025
-        #   - name: smtp-mail
-        #     containerPort: 1025
+          volumeMounts:
+            - name: db
+              mountPath: /db
+      volumes:
+        - name: db
+          persistentVolumeClaim:
+            claimName: {{ include "hybrid-planner.fullname" . }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
