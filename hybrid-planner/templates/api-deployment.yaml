@@ -28,9 +28,9 @@ spec:
           image: "{{ .Values.backendImage.image }}:{{ .Values.backendImage.tag | default "latest" }}"
           imagePullPolicy: {{ .Values.backendImage.pullPolicy }}
           command:
-            - sh
-            - -c
-            - "npm run deploy-db"
+            - /usr/bin/npm
+            - run
+            - deploy-db
           env:
             - name: DATABASE_URL
               value: file:/db/database.sqlite3
