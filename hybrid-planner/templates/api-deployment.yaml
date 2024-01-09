@@ -31,6 +31,12 @@ spec:
             - bash
             - -c
             - "npx prisma migrate deploy"
+          env:
+            - name: DATABASE_URL
+              value: file:/db/database.sqlite3
+          volumeMounts:
+            - mountPath: /db
+              name: database
       containers:
         - name: {{ .Chart.Name }}-api
           securityContext:
