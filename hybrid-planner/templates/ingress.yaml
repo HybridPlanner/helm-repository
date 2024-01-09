@@ -1,0 +1,38 @@
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: redirect-to-https
+  labels:
+    {{- include "hybrid-planner.labels" . | nindent 4 }}
+spec:
+  redirectScheme:
+    scheme: https
+    permanent: true
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: {{ include "hybrid-planner.fullname" . }}
+  labels:
+    {{- include "hybrid-planner.labels" . | nindent 4 }}
+spec:
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - kind: Rule
+      match: {{ .Values.ingress.hostRule }}
+      services:
+        - name: {{ template "hybrid-planner.fullname" . }}
+          port: http-front
+      middlewares:
+        - name: redirect-to-https
+    - kind: Rule
+      match: {{ .Values.ingress.hostRule }} && Path(`/api`)
+      services:
+        - name: {{ template "hybrid-planner.fullname" . }}
+          port: http-api
+      middlewares:
+        - name: redirect-to-https

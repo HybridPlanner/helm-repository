@@ -1,0 +1,11 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ include "hybrid-planner.fullname" . }}
+stringData:
+  RAINBOW_APPLICATION_ID: "{{ .Values.secrets.RAINBOW_APPLICATION_ID }}"
+  RAINBOW_APPLICATION_SECRET: "{{ .Values.secrets.RAINBOW_APPLICATION_SECRET }}"
+  RAINBOW_LOGIN: "{{ .Values.secrets.RAINBOW_LOGIN }}"
+  RAINBOW_PASSWORD: "{{ .Values.secrets.RAINBOW_PASSWORD }}"
+  JWT_SECRET: "{{ .Values.secrets.JWT_SECRET }}"
