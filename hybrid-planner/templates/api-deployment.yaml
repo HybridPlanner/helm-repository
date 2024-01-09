@@ -25,7 +25,7 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       initContainers:
         - name: init-prisma-database
-          image: "{{ .Values.backendImage.repository }}:{{ .Values.backendImage.tag | default "latest" }}"
+          image: "{{ .Values.backendImage.image }}:{{ .Values.backendImage.tag | default "latest" }}"
           imagePullPolicy: {{ .Values.backendImage.pullPolicy }}
           command:
             - bash

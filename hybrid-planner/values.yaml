@@ -6,7 +6,7 @@ replicaCount: 1
 
 frontendImage:
   image: ghcr.io/hybridplanner/frontend
-  PullPolicy: IfNotPresent
+  pullPolicy: IfNotPresent
   tag: ""
 
 backendImage:
