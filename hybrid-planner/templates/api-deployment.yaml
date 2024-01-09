@@ -28,7 +28,7 @@ spec:
           image: "{{ .Values.backendImage.image }}:{{ .Values.backendImage.tag | default "latest" }}"
           imagePullPolicy: {{ .Values.backendImage.pullPolicy }}
           command:
-            - bash
+            - sh
             - -c
             - "npx prisma migrate deploy"
           env:
