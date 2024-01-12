@@ -30,7 +30,7 @@ spec:
       middlewares:
         - name: redirect-to-https
     - kind: Rule
-      match: {{ .Values.ingress.hostRule }} && Path(`/api`)
+      match: {{ .Values.ingress.hostRule }} && PathPrefix(`/api`)
       services:
         - name: {{ template "hybrid-planner.fullname" . }}
           port: http-api
