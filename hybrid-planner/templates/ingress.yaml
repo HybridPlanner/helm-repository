@@ -11,6 +11,18 @@ spec:
     permanent: true
 
 ---
+# Redirect to https
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: api-stripeprefix
+spec:
+  stripPrefix:
+    prefixes:
+      - /api/
+    forceSlash: true
+
+---
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
@@ -36,3 +48,4 @@ spec:
           port: http-api
       middlewares:
         - name: redirect-to-https
+        - name: api-stripeprefix
