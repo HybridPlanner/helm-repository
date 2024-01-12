@@ -10,3 +10,7 @@ stringData:
   RAINBOW_LOGIN: "{{ .Values.secrets.RAINBOW_LOGIN }}"
   RAINBOW_PASSWORD: "{{ .Values.secrets.RAINBOW_PASSWORD }}"
   JWT_SECRET: "{{ .Values.secrets.JWT_SECRET }}"
+  MAIL_HOST: "{{ .Values.secrets.MAIL_HOST }}"
+  MAIL_PORT: "{{ .Values.secrets.MAIL_PORT }}"
+  MAIL_USER: "{{ .Values.secrets.MAIL_USER }}"
+  MAIL_PASS: "{{ .Values.secrets.MAIL_PASSWORD }}"
