@@ -58,16 +58,6 @@ spec:
             - name: http
               containerPort: {{ .Values.service.apiPort }}
               protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
-            initialDelaySeconds: 90
-          readinessProbe:
-            httpGet:
-              path: /
-              port: http
-            initialDelaySeconds: 90
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
