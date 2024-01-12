@@ -55,7 +55,7 @@ spec:
             - secretRef:
                 name: {{ include "hybrid-planner.fullname" . }}
           ports:
-            - name: http
+            - name: http-api
               containerPort: {{ .Values.service.apiPort }}
               protocol: TCP
           resources:

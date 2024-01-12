@@ -36,10 +36,3 @@ spec:
           port: http-api
       middlewares:
         - name: redirect-to-https
-    #- kind: Rule
-    # match: {{ .Values.ingress.hostRule }} && Path(`/mail`)
-    # services:
-    #   - name: {{ template "hybrid-planner.fullname" . }}
-    #     port: http-mail
-    # middlewares:
-    #   - name: redirect-to-https

@@ -15,13 +15,5 @@ spec:
       targetPort: http-api
       protocol: TCP
       name: http-api
-    #- port: 8025
-    #  targetPort: http-mail
-    #  protocol: TCP
-    #  name: http-mail
-    #- port: 1025
-    #  targetPort: smtp-mail
-    #  protocol: TCP
-    #  name: smtp-mail
   selector:
     {{- include "hybrid-planner.selectorLabels" . | nindent 4 }}

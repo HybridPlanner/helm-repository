@@ -30,17 +30,17 @@ spec:
           image: "{{ .Values.frontendImage.image }}:{{ .Values.frontendImage.tag | default "latest" }}"
           imagePullPolicy: {{ .Values.frontendImage.pullPolicy }}
           ports:
-            - name: http
+            - name: http-front
               containerPort: {{ .Values.service.frontPort }}
               protocol: TCP
           livenessProbe:
             httpGet:
               path: /
-              port: http
+              port: http-front
           readinessProbe:
             httpGet:
               path: /
-              port: http
+              port: http-front
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
