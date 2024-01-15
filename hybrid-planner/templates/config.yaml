@@ -14,3 +14,4 @@ stringData:
   MAIL_PORT: "{{ .Values.secrets.MAIL_PORT }}"
   MAIL_USER: "{{ .Values.secrets.MAIL_USER }}"
   MAIL_PASS: "{{ .Values.secrets.MAIL_PASSWORD }}"
+  MAIL_DEFAULT_FROM: '{{ .Values.secrets.MAIL_FROM }}'
