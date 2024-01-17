@@ -72,6 +72,8 @@ secrets:
   MAIL_PASSWORD: ""
   MAIL_FROM: '"No Reply" <noreply@bricklou.ovh>'
 
+  TZ: "Europe/Paris"
+
 nodeSelector: {}
 
 tolerations: []
